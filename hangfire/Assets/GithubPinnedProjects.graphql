@@ -1,0 +1,43 @@
+﻿{
+  user(login: "Tarasa24") {
+    pinnedItems(first: 6) {
+      totalCount
+      nodes {
+        ... on Repository {
+          name
+          description
+          stargazerCount
+          homepageUrl
+          url
+          licenseInfo {
+            url
+            name
+          }
+          releases(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
+            totalCount
+            nodes {
+              name
+              releaseAssets(first: 100) {
+                nodes {
+                  name
+                  downloadCount
+                }
+              }
+            }
+          }
+          languages(first: 3, orderBy: {field: SIZE, direction: DESC}) {
+            totalSize
+            totalCount
+            edges {
+              size
+              node {
+                color
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
