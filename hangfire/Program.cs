@@ -5,7 +5,7 @@ using Hangfire.Console;
 using Prometheus;
 using DotNetEnv;
 
-var builder = WebApplication.CreateBuilder(args);;
+var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
 services.AddHangfire(configuration => {
@@ -35,20 +35,19 @@ services.AddHangfire(configuration => {
                     TransactionTimeout = TimeSpan.FromMinutes(1),
                     TablesPrefix = "Hangfire"
                 }));
-    });
+});
 services.AddHangfireServer();
 services.AddMvc();
 
 var app = builder.Build();
-
-
 app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
     endpoints.MapHangfireDashboard("", new DashboardOptions
     {
-        AppPath = "https://tarasa24.dev"
+        AppPath = "https://tarasa24.dev",
+        Authorization = new[] { new hangfire.HangFireAuthorizationFilter() }
     });
     endpoints.MapMetrics();
 
