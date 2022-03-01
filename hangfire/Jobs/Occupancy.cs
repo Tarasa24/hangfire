@@ -49,10 +49,10 @@ namespace hangfire.Jobs
             context.ResetTextColor();
 
             context.WriteLine("Incerasing gauges");
-            OrlovaPool.IncTo(orlova["pool"]);
-            OrlovaSauna.IncTo(orlova["sauna"]);
-            OlomoucPool.IncTo(olomouc["pool"]);
-            OlomoucSauna.IncTo(45 - olomouc["sauna"]);
+            OrlovaPool.Set(orlova["pool"]);
+            OrlovaSauna.Set(orlova["sauna"]);
+            OlomoucPool.Set(olomouc["pool"]);
+            OlomoucSauna.Set(45 - olomouc["sauna"]);
         }
     }
 }
